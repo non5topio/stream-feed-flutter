@@ -9,12 +9,12 @@ environment:
   flutter: ">=3.7.0"
 
 dependencies:
-  cupertino_icons: ^1.0.5
+  cupertino_icons: ^1.0.6
   flutter:
     sdk: flutter
   stream_feed:
     path: ../packages/stream_feed
-  timeago: ^3.3.0
+  timeago: ^3.6.1
 
 dev_dependencies:
   flutter_test:
