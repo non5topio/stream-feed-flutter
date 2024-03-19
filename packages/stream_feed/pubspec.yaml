@@ -9,27 +9,24 @@ environment:
   sdk: ">=2.19.0 <4.0.0"
 
 dependencies:
-  collection: ^1.17.0
-  dio: ^5.0.0
+  collection: ^1.18.0
+  dio: ^5.4.1
   equatable: ^2.0.5
   faye_dart:
-    #path: ../faye_dart
-    git:
-      url: https://github.com/followthemoney1/stream-feed-flutter.git
-      ref: master
-      path: packages/faye_dart
+    path: /Users/rajanmetaliya/workspace/flutter_plugins/stream-feed-flutter/packages/faye_dart/
   http_parser: ^4.0.2
-  intl:
-  jose: ^0.3.3
-  json_annotation: ^4.8.0
-  logging: ^1.1.1
-  meta: ^1.8.0
-  mime: ^1.0.4
+  intl: ^0.19.0
+  jose: ^0.3.4
+  json_annotation: ^4.8.1
+  logging: ^1.2.0
+  meta: ^1.11.0
+  uuid: ^4.3.3
+  mime: ^1.0.5
 
 dev_dependencies:
-  build_runner: ^2.3.3
-  json_serializable: ^6.6.1
-  mocktail: ^0.3.0
-  test: ^1.23.1
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  mocktail: ^1.0.3
+  test: ^1.25.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
