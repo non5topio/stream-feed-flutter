@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:stream_feed_flutter/stream_feed_flutter.dart';
 
 /// Defines sample users used to log into the sample application with.
@@ -113,9 +111,7 @@ class MobileApp extends StatelessWidget {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xff005fff),
         ),
-        textTheme: GoogleFonts.interTextTheme(
-          Theme.of(context).textTheme,
-        ),
+
         inputDecorationTheme: InputDecorationTheme(
           border: const UnderlineInputBorder(
             borderSide: BorderSide(
@@ -416,7 +412,7 @@ class _MyHomePageState extends State<MyHomePage> with StreamFeedMixin {
             label: 'Timeline',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.bell),
+            icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
         ],
