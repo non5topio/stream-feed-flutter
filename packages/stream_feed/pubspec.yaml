@@ -13,7 +13,10 @@ dependencies:
   dio: ^5.4.1
   equatable: ^2.0.5
   faye_dart:
-    path: /Users/rajanmetaliya/workspace/flutter_plugins/stream-feed-flutter/packages/faye_dart/
+    git:
+      url: https://github.com/rajan-nonstopio/stream-feed-flutter
+      ref: rajan/feat/version
+      path: packages/faye_dart
   http_parser: ^4.0.2
   intl: ^0.19.0
   jose: ^0.3.4

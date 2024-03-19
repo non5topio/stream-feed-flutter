@@ -14,9 +14,12 @@ dependencies:
   flutter:
     sdk: flutter
   meta: ^1.11.0
-  rxdart: ^0.28.0-dev.1
+  rxdart: ^0.27.1
   stream_feed:
-    path: /Users/rajanmetaliya/workspace/flutter_plugins/stream-feed-flutter/packages/stream_feed/
+    git:
+      url: https://github.com/rajan-nonstopio/stream-feed-flutter
+      ref: rajan/feat/version
+      path: packages/stream_feed
 dev_dependencies:
   flutter_test:
     sdk: flutter
