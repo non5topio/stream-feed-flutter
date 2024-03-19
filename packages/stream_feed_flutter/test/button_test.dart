@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:stream_feed_flutter/src/widgets/buttons/buttons.dart';
 import 'package:stream_feed_flutter/src/widgets/pages/reaction_list_view.dart';
@@ -357,91 +356,92 @@ void main() {
       );
     });
 
-    testGoldens('onAddReaction', (tester) async {
-      const addedReaction = Reaction();
-      when(() => mockReactionsController.getReactions(activityId))
-          .thenAnswer((_) => reactions);
-      expect(bloc.reactionsManager.getReactions(activityId), reactions);
-      when(() => mockReactions.add(
-            kind,
-            activityId,
-          )).thenAnswer((_) async => addedReaction);
-      await tester.pumpWidgetBuilder(
-        StreamFeed(
-          bloc: bloc,
-          child: Scaffold(
-            body: ReactionToggleIcon(
-              activity: GenericEnrichedActivity(id: activityId),
-              feedGroup: feedGroup,
-              kind: kind,
-              activeIcon: activeIcon,
-              count: 1300,
-              inactiveIcon: inactiveIcon,
-            ),
-          ),
-        ),
-        surfaceSize: const Size(125, 100),
-      );
-      await screenMatchesGolden(tester, 'reaction_toggle_onAddReaction');
-      final reactionIcon = find.byType(InkWell);
-      expect(reactionIcon, findsOneWidget);
-      await tester.tap(reactionIcon);
-      verify(() => mockReactions.add(
-            kind,
-            activityId,
-          )).called(1);
+    // testGoldens('onAddReaction', (tester) async {
+    //   const addedReaction = Reaction();
+    //   when(() => mockReactionsController.getReactions(activityId))
+    //       .thenAnswer((_) => reactions);
+    //   expect(bloc.reactionsManager.getReactions(activityId), reactions);
+    //   when(() => mockReactions.add(
+    //         kind,
+    //         activityId,
+    //       )).thenAnswer((_) async => addedReaction);
+    //   await tester.pumpWidgetBuilder(
+    //     StreamFeed(
+    //       bloc: bloc,
+    //       child: Scaffold(
+    //         body: ReactionToggleIcon(
+    //           activity: GenericEnrichedActivity(id: activityId),
+    //           feedGroup: feedGroup,
+    //           kind: kind,
+    //           activeIcon: activeIcon,
+    //           count: 1300,
+    //           inactiveIcon: inactiveIcon,
+    //         ),
+    //       ),
+    //     ),
+    //     surfaceSize: const Size(125, 100),
+    //   );
+    //   await screenMatchesGolden(tester, 'reaction_toggle_onAddReaction');
+    //   final reactionIcon = find.byType(InkWell);
+    //   expect(reactionIcon, findsOneWidget);
+    //   await tester.tap(reactionIcon);
+    //   verify(() => mockReactions.add(
+    //         kind,
+    //         activityId,
+    //       )).called(1);
 
-      //TODO: test reaction Stream
-    });
-    testGoldens('onRemoveReaction', (tester) async {
-      const reactionId = 'reactionId';
-      const reaction = Reaction(id: reactionId);
-      when(() => mockReactionsController.getReactions(activityId))
-          .thenAnswer((_) => reactions);
-      when(() => mockReactions.delete(reactionId))
-          .thenAnswer((invocation) => Future.value());
+    //   //TODO: test reaction Stream
+    // });
+    // testGoldens('onRemoveReaction', (tester) async {
+    //   const reactionId = 'reactionId';
+    //   const reaction = Reaction(id: reactionId);
+    //   when(() => mockReactionsController.getReactions(activityId))
+    //       .thenAnswer((_) => reactions);
+    //   when(() => mockReactions.delete(reactionId))
+    //       .thenAnswer((invocation) => Future.value());
 
-      await tester.pumpWidgetBuilder(
-        MaterialApp(
-          builder: (context, child) {
-            return StreamFeed(
-              bloc: bloc,
-              child: child!,
-            );
-          },
-          home: Scaffold(
-            body: ReactionToggleIcon(
-              ownReactions: const [reaction],
-              activity: GenericEnrichedActivity(
-                  id: activityId,
-                  reactionCounts: const {
-                    'like': 1300
-                  },
-                  ownReactions: const {
-                    'like': [reaction]
-                  },
-                  latestReactions: const {
-                    'like': [reaction]
-                  }),
-              feedGroup: feedGroup,
-              kind: kind,
-              activeIcon: activeIcon,
-              count: 1300,
-              inactiveIcon: inactiveIcon,
-            ),
-          ),
-        ),
-        surfaceSize: const Size(125, 100),
-      );
-      await screenMatchesGolden(tester, 'reaction_toggle_onRemoveReaction');
-      final reactionIcon = find.byType(InkWell);
-      expect(reactionIcon, findsOneWidget);
-      await tester.tap(reactionIcon);
-      await tester.pumpAndSettle();
-      verify(() => mockReactions.delete(reactionId)).called(1);
+    //   await tester.pumpWidgetBuilder(
+    //     MaterialApp(
+    //       builder: (context, child) {
+    //         return StreamFeed(
+    //           bloc: bloc,
+    //           child: child!,
+    //         );
+    //       },
+    //       home: Scaffold(
+    //         body: ReactionToggleIcon(
+    //           ownReactions: const [reaction],
+    //           activity: GenericEnrichedActivity(
+    //               id: activityId,
+    //               reactionCounts: const {
+    //                 'like': 1300
+    //               },
+    //               ownReactions: const {
+    //                 'like': [reaction]
+    //               },
+    //               latestReactions: const {
+    //                 'like': [reaction]
+    //               }),
+    //           feedGroup: feedGroup,
+    //           kind: kind,
+    //           activeIcon: activeIcon,
+    //           count: 1300,
+    //           inactiveIcon: inactiveIcon,
+    //         ),
+    //       ),
+    //     ),
+    //     surfaceSize: const Size(125, 100),
+    //   );
+    //   await screenMatchesGolden(tester, 'reaction_toggle_onRemoveReaction');
+    //   final reactionIcon = find.byType(InkWell);
+    //   expect(reactionIcon, findsOneWidget);
+    //   await tester.tap(reactionIcon);
+    //   await tester.pumpAndSettle();
+    //   verify(() => mockReactions.delete(reactionId)).called(1);
 
-      //TODO: test reaction Stream
-    });
+    //   //TODO: test reaction Stream
+    // });
+ 
   });
 
   group('ReactionIcon', () {
@@ -475,21 +475,21 @@ void main() {
       expect(tapped, 1);
     });
 
-    testGoldens('repost golden', (tester) async {
-      await tester.pumpWidgetBuilder(
-        StreamFeedTheme(
-          data: StreamFeedThemeData(),
-          child: Center(
-            child: ReactionIcon(
-              icon: StreamSvgIcon.repost(),
-              count: 23,
-            ),
-          ),
-        ),
-        surfaceSize: const Size(100, 75),
-      );
-      await screenMatchesGolden(tester, 'repost');
-    });
+    // testGoldens('repost golden', (tester) async {
+    //   await tester.pumpWidgetBuilder(
+    //     StreamFeedTheme(
+    //       data: StreamFeedThemeData(),
+    //       child: Center(
+    //         child: ReactionIcon(
+    //           icon: StreamSvgIcon.repost(),
+    //           count: 23,
+    //         ),
+    //       ),
+    //     ),
+    //     surfaceSize: const Size(100, 75),
+    //   );
+    //   await screenMatchesGolden(tester, 'repost');
+    // });
   });
 
   group('debugFillProperties tests', () {

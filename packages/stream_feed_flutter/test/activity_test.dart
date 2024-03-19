@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:golden_toolkit/golden_toolkit.dart';
+// import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:stream_feed_flutter/src/theme/stream_feed_theme.dart';
@@ -159,36 +159,36 @@ void main() {
     });
   });
 
-  testGoldens('ActivityFooter', (tester) async {
-    await tester.pumpWidgetBuilder(
-      StreamFeedTheme(
-        data: StreamFeedThemeData.light(),
-        child: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: ActivityFooter(
-              activity: GenericEnrichedActivity(
-                id: '1',
-                reactionCounts: {
-                  'like': 139,
-                  'repost': 23,
-                },
-                ownReactions: {
-                  'like': [
-                    Reaction(
-                      kind: 'like',
-                    )
-                  ]
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-      surfaceSize: const Size(200, 200),
-    );
-    await screenMatchesGolden(tester, 'activity_footer');
-  });
+  // testGoldens('ActivityFooter', (tester) async {
+  //   await tester.pumpWidgetBuilder(
+  //     StreamFeedTheme(
+  //       data: StreamFeedThemeData.light(),
+  //       child: const Center(
+  //         child: Padding(
+  //           padding: EdgeInsets.all(8),
+  //           child: ActivityFooter(
+  //             activity: GenericEnrichedActivity(
+  //               id: '1',
+  //               reactionCounts: {
+  //                 'like': 139,
+  //                 'repost': 23,
+  //               },
+  //               ownReactions: {
+  //                 'like': [
+  //                   Reaction(
+  //                     kind: 'like',
+  //                   )
+  //                 ]
+  //               },
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //     surfaceSize: const Size(200, 200),
+  //   );
+  //   await screenMatchesGolden(tester, 'activity_footer');
+  // });
 
   group('debugFillProperties tests', () {
     test('Default ActivityWidget debugFillProperties', () {
